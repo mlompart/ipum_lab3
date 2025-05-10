@@ -44,12 +44,12 @@ jobs:
            run: uv sync --group deployment
 
          - name: Download model artifacts
+         
            # Runs src/main.py --script download, as per lab instructions
-           # Ensure src/main.py is executable and correctly placed
-           run: uv run python src/main.py --script download
+           run: uv run python main.py --script download
 
          - name: Export model to ONNX
-           # Runs src/main.py --script export, as per lab instructions
-           # Ensure src/main.py is executable and correctly placed
-           run: uv run python src/main.py --script export
+
+           # Runs main.py --script export, as per lab instructions
+           run: uv run python main.py --script export
 
