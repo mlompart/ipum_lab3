@@ -44,7 +44,7 @@ jobs:
            run: uv sync --group deployment
 
          - name: Download model artifacts
-         
+
            # Runs src/main.py --script download, as per lab instructions
            run: uv run python main.py --script download
 
@@ -52,4 +52,8 @@ jobs:
 
            # Runs main.py --script export, as per lab instructions
            run: uv run python main.py --script export
+
+         - name: Build Docker image
+           # Builds the Docker image using the Dockerfile in the repository root
+           run: docker build -t polish-sentiment-app-onnx:latest .
 
