@@ -13,20 +13,5 @@ jobs:
     
     # definitions of all job steps
     steps:
-<<<<<<< HEAD
-<<<<<<< HEAD
-      name: Print Hello World # step name, displayed on UI
-      run: echo "hello wrold!" # print "Hello world!" here
-=======
-<<<<<<< HEAD
-      name: Print Hello World # step name, displayed on UI
-      run: echo "hello wrold!" # print "Hello world!" here
-=======
       - name: Print Hello World # step name, displayed on UI
         run: echo "hello wrold!" # print "Hello world!" here
->>>>>>> d37e15a (initial commit)
->>>>>>> 901dc25 (initial commit)
-=======
-      - name: Print Hello World # step name, displayed on UI
-        run: echo "hello wrold!" # print "Hello world!" here
->>>>>>> 67b9aef (initial commit)
