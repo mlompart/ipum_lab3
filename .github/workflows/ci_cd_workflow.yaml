@@ -2,10 +2,21 @@
 
 name: CI/CD workflow
 
-on: workflow_dispatch
-
+on:
+  workflow_dispatch:
+    inputs:
+      steps:
+        description: 'Specify which pipeline stages to run: "integration" for checks/tests, "all" for the full pipeline including deployment.'
+        required: true
+        type: choice
+        options:
+          - integration
+          - all
+        default: 'all'
 jobs:
    integration:
+      # Run integration job if 'steps' input is 'all' or 'integration'
+      if: ${{ inputs.steps == 'all' || inputs.steps == 'integration' }}
       name: checks_and_tests
       runs-on: ubuntu-latest
       steps:
@@ -31,7 +42,10 @@ jobs:
    deployment:
       name: onnx-model-pipeline # Meaningful name for the ONNX model processing job
       runs-on: ubuntu-latest     # Appropriate image for the job
+      # Deployment job depends on successful completion of integration job
+      # and runs only if 'steps' input is 'all' and integration job was successful.
       needs: integration         # Ensures this job runs only if 'integration' job succeeds
+      if: ${{ inputs.steps == 'all' && needs.integration.result == 'success' }}
       steps:
          - name: Checkout code repo
            uses: actions/checkout@v4
